@@ -24,6 +24,12 @@ These skills help you think through problems before writing code.
   npx skills@latest add duarteplesteves/skills/prd-to-issues
   ```
 
+- **prd-to-linear-issues** — Break a PRD into Linear issues with separate design and engineering tickets per vertical slice, using the Linear MCP server.
+
+  ```
+  npx skills@latest add duarteplesteves/skills/prd-to-linear-issues
+  ```
+
 - **grill-me** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
 
   ```
