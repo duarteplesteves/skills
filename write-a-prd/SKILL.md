@@ -1,74 +1,103 @@
 ---
 name: write-a-prd
-description: Create a PRD through user interview, codebase exploration, and module design, then submit as a GitHub issue. Use when user wants to write a PRD, create a product requirements document, or plan a new feature.
+description: Create a lean PRD through a conversational interview, then publish it as a Linear Document under the relevant project. Use when user wants to write a PRD, create a product requirements document, plan a new feature, or capture a feature idea.
 ---
 
-This skill will be invoked when the user wants to create a PRD. You may skip steps if you don't consider them necessary.
+# Write a PRD
 
-1. Ask the user for a long, detailed description of the problem they want to solve and any potential ideas for solutions.
+Transform a rough idea or brain dump into a well-structured PRD via a conversational interview, then publish it as a Linear Document in the relevant Linear project.
 
-2. Explore the repo to verify their assertions and understand the current state of the codebase.
+## Prerequisites
 
-3. Interview the user relentlessly about every aspect of this plan until you reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one.
+Before starting, verify the **Linear MCP server** is configured and authenticated.
+Call `mcp__linear-server__get_authenticated_user`. If it fails, tell the user:
 
-4. Sketch out the major modules you will need to build or modify to complete the implementation. Actively look for opportunities to extract deep modules that can be tested in isolation.
+> "The Linear MCP server is not configured. Please install and authenticate it before using this skill."
 
-A deep module (as opposed to a shallow module) is one which encapsulates a lot of functionality in a simple, testable interface which rarely changes.
+Then stop.
 
-Check with the user that these modules match their expectations. Check with the user which modules they want tests written for.
+## Process
 
-5. Once you have a complete understanding of the problem and solution, use the template below to write the PRD. The PRD should be submitted as a GitHub issue.
+### 1. Accept the brain dump
+
+Ask the user for a rough description of their idea. Accept anything — a sentence, a paragraph, a messy brain dump. Do not ask for structure; that's your job.
+
+### 2. Explore the codebase
+
+Explore the repo to understand the current state of the codebase and verify any assumptions from the user's description. This context will inform your interview questions.
+
+### 3. Interview the user
+
+Interview the user to fill in the gaps. Ask questions **one at a time**, and adapt based on answers. For each question, provide your recommended answer based on what you've learned from the codebase and the conversation so far.
+
+Cover these areas (skip what's already clear from the brain dump):
+
+- **What** — clear description of the feature or change
+- **Why** — the problem it solves or value it adds
+- **Who** — which users are affected (patient, doctor/admin, or both)
+- **How it looks** — key UI/UX notes, user flows, screen descriptions
+- **Scope boundaries** — what is explicitly NOT included
+- **Dependencies** — does it touch existing systems (payments, auth, calendar, etc.)
+
+Keep the interview focused — aim for 5-10 minutes, not an exhaustive interrogation. Stop when you have enough to write a clear, actionable PRD.
+
+### 4. Write the PRD
+
+Generate the PRD using the template below. Present it to the user for review. Iterate until approved.
+
+### 5. Publish to Linear
+
+#### 5a. Select or create the Linear project
+
+Call `mcp__linear-server__list_projects` and present existing projects. The PRD should go under the most relevant domain project (e.g., "Appointments", "Payments", "Onboarding").
+
+If no suitable project exists, create one via `mcp__linear-server__save_project`.
+
+#### 5b. Create the Linear Document
+
+Call `mcp__linear-server__create_document` with:
+- **Title**: the PRD title
+- **Content**: the full PRD content (markdown)
+- **Project**: the selected project
+
+Confirm success and share the document link with the user.
+
+## PRD Template
 
 <prd-template>
-
 ## Problem Statement
 
-The problem that the user is facing, from the user's perspective.
+The problem from the user's perspective. Why does this matter?
 
 ## Solution
 
-The solution to the problem, from the user's perspective.
+A clear, non-technical description of what will be built. Written so a non-technical stakeholder can understand it.
+
+## Who is affected
+
+Which users this impacts: patients, doctors/admin, or both. Describe how each role interacts with the feature.
 
 ## User Stories
 
-A LONG, numbered list of user stories. Each user story should be in the format of:
+A numbered list of user stories covering all aspects of the feature:
 
-1. As an <actor>, I want a <feature>, so that <benefit>
+1. As a <actor>, I want <feature>, so that <benefit>
 
-<user-story-example>
-1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
-</user-story-example>
+Be thorough but focused on the defined scope.
 
-This list of user stories should be extremely extensive and cover all aspects of the feature.
+## UI/UX Notes
 
-## Implementation Decisions
+Key screens, flows, or interactions. Describe what the user sees and does, not how it's implemented. Note any areas that need design work.
 
-A list of implementation decisions that were made. This can include:
+## Scope Boundaries
 
-- The modules that will be built/modified
-- The interfaces of those modules that will be modified
-- Technical clarifications from the developer
-- Architectural decisions
-- Schema changes
-- API contracts
-- Specific interactions
+What is explicitly **out of scope** for this feature. Be specific to prevent scope creep.
 
-Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
+## Dependencies
 
-## Testing Decisions
+Existing systems, features, or third-party services this feature interacts with.
 
-A list of testing decisions that were made. Include:
+## Open Questions
 
-- A description of what makes a good test (only test external behavior, not implementation details)
-- Which modules will be tested
-- Prior art for the tests (i.e. similar types of tests in the codebase)
-
-## Out of Scope
-
-A description of the things that are out of scope for this PRD.
-
-## Further Notes
-
-Any further notes about the feature.
-
+Any unresolved decisions or questions that need further discussion.
 </prd-template>
