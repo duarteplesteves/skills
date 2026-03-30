@@ -6,7 +6,7 @@ A collection of agent skills that extend capabilities across planning, developme
 
 These skills help you think through problems before writing code.
 
-- **write-a-prd** — Create a PRD through an interactive interview, codebase exploration, and module design. Filed as a GitHub issue.
+- **write-a-prd** — Create a lean PRD through a conversational interview, then publish it as a Linear Document under the relevant project.
 
   ```
   npx skills@latest add duarteplesteves/skills/write-a-prd
@@ -18,16 +18,10 @@ These skills help you think through problems before writing code.
   npx skills@latest add duarteplesteves/skills/prd-to-plan
   ```
 
-- **prd-to-issues** — Break a PRD into independently-grabbable GitHub issues using vertical slices.
+- **prd-to-issues** — Break a PRD into Linear issues using vertical slices, with design/engineering sub-issues, priority, and Fibonacci estimates.
 
   ```
   npx skills@latest add duarteplesteves/skills/prd-to-issues
-  ```
-
-- **prd-to-linear-issues** — Break a PRD into Linear issues with separate design and engineering tickets per vertical slice, using the Linear MCP server.
-
-  ```
-  npx skills@latest add duarteplesteves/skills/prd-to-linear-issues
   ```
 
 - **grill-me** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
