@@ -12,16 +12,16 @@ These skills help you think through problems before writing code.
   npx skills@latest add duarteplesteves/skills/write-a-prd
   ```
 
-- **prd-to-plan** — Turn a PRD into a multi-phase implementation plan using tracer-bullet vertical slices.
-
-  ```
-  npx skills@latest add duarteplesteves/skills/prd-to-plan
-  ```
-
 - **prd-to-issues** — Break a PRD into Linear issues using vertical slices, with design/engineering sub-issues, priority, and Fibonacci estimates.
 
   ```
   npx skills@latest add duarteplesteves/skills/prd-to-issues
+  ```
+
+- **tech-design** — Resolve open technical questions for a Linear issue before implementation, producing a decision log saved to Obsidian.
+
+  ```
+  npx skills@latest add duarteplesteves/skills/tech-design
   ```
 
 - **grill-me** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
@@ -58,12 +58,6 @@ These skills help you write, refactor, and fix code.
   npx skills@latest add duarteplesteves/skills/improve-codebase-architecture
   ```
 
-- **qa** — Run an interactive QA session where you report bugs conversationally and the agent files GitHub issues with full codebase context.
-
-  ```
-  npx skills@latest add duarteplesteves/skills/qa
-  ```
-
 ## Writing & Knowledge
 
 - **write-a-skill** — Create new skills with proper structure, progressive disclosure, and bundled resources.
@@ -76,10 +70,4 @@ These skills help you write, refactor, and fix code.
 
   ```
   npx skills@latest add duarteplesteves/skills/ubiquitous-language
-  ```
-
-- **obsidian-vault** — Search, create, and manage notes in an Obsidian vault with wikilinks and index notes.
-
-  ```
-  npx skills@latest add duarteplesteves/skills/obsidian-vault
   ```

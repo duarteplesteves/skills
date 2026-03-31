@@ -62,6 +62,20 @@ Call `mcp__linear-server__create_document` with:
 
 Confirm success and share the document link with the user.
 
+### 6. Save locally to Obsidian
+
+Save the PRD to:
+
+```
+/Users/duarteesteves/Documents/obsidian-notes/<project-name>/prds/<prd-name>.md
+```
+
+Where:
+- `<project-name>` is the Linear project name (kebab-case)
+- `<prd-name>` is derived from the PRD title (kebab-case)
+
+Create directories if they don't exist.
+
 ## PRD Template
 
 <prd-template>
